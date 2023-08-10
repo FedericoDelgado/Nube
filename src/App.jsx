@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Navigation } from "./components/navigation";
-import { Header } from "./components/header";
-import { Features } from "./components/features";
-import { About } from "./components/about";
-import { Services } from "./components/services";
-import { Gallery } from "./components/gallery";
-import { Testimonials } from "./components/testimonials";
-import { Team } from "./components/Team";
 import { Contact } from "./components/contact";
+
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import TemplatesPage from "./pages/TemplatesPage";
+import ContactPage from "./pages/ContactPage";
+import ServicesPage from "./pages/ServicesPage";
+
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
@@ -25,26 +25,21 @@ const App = () => {
   }, []);
 
   return (
-      <div>
-        <Navigation />
-        <Routes> 
-          <Route path="/" element={
-            <React.Fragment>
-              <Header data={landingPageData.Header} />
-              <Features data={landingPageData.Features} />
-              <About data={landingPageData.About} />
-              <Services data={landingPageData.Services} />
-              <Gallery data={landingPageData.Gallery} />
-              <Testimonials data={landingPageData.Testimonials} />
-              <Team data={landingPageData.Team} />
-              <Contact data={landingPageData.Contact} />
-            </React.Fragment>
-          } />
-          <Route path="contact" element ={ 
-                          <Contact data={landingPageData.Contact} />
-          }/>
-        </Routes>
-      </div>  );
+    <div>
+      <Navigation />
+      <Routes> 
+        <Route path="/" element={<HomePage landingPageData={landingPageData} />} />
+        <Route path="/home" element={<HomePage landingPageData={landingPageData} />} />
+        <Route path="/about" element={<AboutPage landingPageData={landingPageData} />} /> 
+        <Route path="templates" element={<TemplatesPage landingPageData={landingPageData} />} />
+        <Route path="services" element={<ServicesPage landingPageData={landingPageData} />} />
+
+
+        <Route path="contact" element={<ContactPage data={landingPageData.Contact} />} />
+      </Routes>
+      <Contact data={landingPageData.Contact}/>
+    </div>
+  );
 };
 
 export default App;

@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-export const Navigation = (props) => {
+export const Navigation = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Cuando cambies de ruta, haz scroll hacia arriba
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <nav id="menu" className="navbar navbar-default navbar-fixed-top">
       <div className="container">
@@ -17,9 +25,9 @@ export const Navigation = (props) => {
             <span className="icon-bar"></span>{" "}
             <span className="icon-bar"></span>{" "}
           </button>
-          <a className="navbar-brand page-scroll" href="#page-top">
+          <Link to="/" className="navbar-brand page-scroll">
             Fixar Template
-          </a>{" "}
+          </Link>{" "}
         </div>
 
         <div
@@ -33,9 +41,9 @@ export const Navigation = (props) => {
               </a>
             </li>
             <li>
-              <a href="#about" className="page-scroll">
+              <Link to="/about" href="#about" className="page-scroll">
                 Nosotros
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#services" className="page-scroll">
@@ -68,3 +76,4 @@ export const Navigation = (props) => {
     </nav>
   );
 };
+export default Navigation;
